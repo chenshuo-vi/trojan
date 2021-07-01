@@ -133,8 +133,10 @@ setupCron() {
             elif [ $LOCAL_TIME -ge 24 ];then
                 LOCAL_TIME=$[$LOCAL_TIME-24]
             fi
+            LOCAL_TIME2=$[$LOCAL_TIME+1]
             crontab -l 2>/dev/null|sed '/acme.sh/d' > crontab.txt
             echo "0 ${LOCAL_TIME}"' * * * systemctl stop trojan-web; "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null; systemctl start trojan-web' >> crontab.txt
+            echo "0 ${LOCAL_TIME2} * * * /sbin/reboot" >> crontab.txt
             crontab crontab.txt
             rm -f crontab.txt
         fi

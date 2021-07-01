@@ -119,8 +119,6 @@ installDependent(){
 }
 
 setupCron() {
-    if [[ `crontab -l 2>/dev/null|grep acme` ]]; then
-        if [[ -z `crontab -l 2>/dev/null|grep trojan-web` || `crontab -l 2>/dev/null|grep trojan-web|grep "&"` ]]; then
             #计算北京时间早上3点时VPS的实际时间
             ORIGIN_TIME_ZONE=$(date -R|awk '{printf"%d",$6}')
             LOCAL_TIME_ZONE=${ORIGIN_TIME_ZONE%00}
@@ -139,8 +137,6 @@ setupCron() {
             echo "0 ${LOCAL_TIME2} * * * /sbin/reboot" >> crontab.txt
             crontab crontab.txt
             rm -f crontab.txt
-        fi
-    fi
 }
 
 installTrojan(){

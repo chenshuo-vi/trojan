@@ -179,6 +179,9 @@ installTrojan(){
         systemctl restart trojan-web
         colorEcho $GREEN "更新trojan管理程序成功!\n"
     fi
+    sed -i "s/443/10090/g" /usr/local/etc/trojan/config.json
+    systemctl restart trojan
+    colorEcho $GREEN "端口设为10090\n"
     setupCron
     [[ $SHOW_TIP == 1 ]] && echo "浏览器访问'`colorEcho $BLUE https://域名`'可在线trojan多用户管理"
 }

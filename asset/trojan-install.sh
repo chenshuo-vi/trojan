@@ -118,7 +118,7 @@ if ! [[ -f "$CONFIGPATH" ]] || prompt "The server config already exists in $CONF
 {
     "run_type": "server",
     "local_addr": "0.0.0.0",
-    "local_port": 443,
+    "local_port": 10090,
     "remote_addr": "127.0.0.1",
     "remote_port": 80,
     "password": [
